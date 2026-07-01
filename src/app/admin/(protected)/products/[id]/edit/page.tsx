@@ -4,15 +4,10 @@ import { ProductForm } from "@/components/admin/product-form";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 
-export default async function EditProductPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
+export default async function EditProductPage({ params }: { params: { id: string } }) {
   const [product, categories] = await Promise.all([
     prisma.product.findUnique({
-      where: { id },
+      where: { id: params.id },
       include: { images: { orderBy: { order: "asc" } } },
     }),
     prisma.category.findMany({ orderBy: { name: "asc" } }),
