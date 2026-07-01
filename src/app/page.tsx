@@ -32,7 +32,7 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative h-[85vh] min-h-[500px] flex items-end">
+      <section className="relative h-[45vh] min-h-[400px] flex items-end">
         <div className="absolute inset-0 bg-gradient-to-br from-stone-900 via-stone-800 to-stone-700 -z-10" />
         <div className="container mx-auto px-4 pb-16 text-white">
           <p className="text-sm tracking-widest uppercase mb-3 opacity-80">Handcrafted in Kenya</p>
@@ -40,7 +40,7 @@ export default async function HomePage() {
             Furniture made to last a lifetime
           </h1>
           <p className="mt-4 max-w-lg text-white/75 text-lg">
-            Solid wood, honest craftsmanship, designed for the modern East African home.
+            Solid wood, honest craftsmanship, designed for the modern home.
           </p>
           <Link href="/shop">
             <Button size="lg" className="mt-8">

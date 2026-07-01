@@ -7,9 +7,9 @@ export const productSchema = z.object({
   categoryId: z.string().min(1, "Select a category"),
   materials: z.array(z.string()).min(1, "Add at least one material"),
   dimensions: z.object({
+    length: z.coerce.number().positive(),
     width: z.coerce.number().positive(),
     height: z.coerce.number().positive(),
-    depth: z.coerce.number().positive(),
     unit: z.enum(["cm", "in"]).default("cm"),
   }),
   stockStatus: z.enum(["IN_STOCK", "OUT_OF_STOCK", "MADE_TO_ORDER"]),

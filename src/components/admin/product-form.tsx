@@ -45,7 +45,7 @@ export function ProductForm({
       featured: false,
       images: [],
       materials: [],
-      dimensions: { unit: "cm", width: 0, height: 0, depth: 0 },
+      dimensions: { unit: "cm", length: 0, width: 0, height: 0},
     },
   });
 
@@ -122,16 +122,16 @@ export function ProductForm({
 
       <div className="grid grid-cols-4 gap-4">
         <div className="space-y-2">
+          <label className="text-sm font-medium">Length (cm)</label>
+          <Input type="number" step="0.1" {...register("dimensions.length")} />
+        </div>
+        <div className="space-y-2">
           <label className="text-sm font-medium">Width (cm)</label>
           <Input type="number" step="0.1" {...register("dimensions.width")} />
         </div>
         <div className="space-y-2">
           <label className="text-sm font-medium">Height (cm)</label>
           <Input type="number" step="0.1" {...register("dimensions.height")} />
-        </div>
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Depth (cm)</label>
-          <Input type="number" step="0.1" {...register("dimensions.depth")} />
         </div>
         <div className="space-y-2">
           <label className="text-sm font-medium">Stock</label>

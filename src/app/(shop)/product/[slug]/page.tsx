@@ -40,9 +40,9 @@ export default async function ProductPage({
   if (!product) notFound();
 
   const dims = product.dimensions as {
+    length: number;
     width: number;
     height: number;
-    depth: number;
     unit: string;
   };
 
@@ -70,8 +70,7 @@ export default async function ProductPage({
               <div>
                 <p className="text-sm font-medium">Dimensions</p>
                 <p className="text-sm text-muted-foreground">
-                  {dims.width} × {dims.height} × {dims.depth} {dims.unit} (W × H
-                  × D)
+                  {dims.length} × {dims.width} × {dims.height} {dims.unit} (L × W × H)
                 </p>
               </div>
             </div>
