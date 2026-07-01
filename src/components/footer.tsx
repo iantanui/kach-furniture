@@ -22,7 +22,7 @@ export function Footer() {
         <div>
           <p className="font-medium mb-3">Contact</p>
           <ul className="space-y-2 text-muted-foreground">
-            <li>Nairobi, Kenya</li>
+            <li>Kachibora, Kenya</li>
             <li>
               <a
                 href={"https://wa.me/" + process.env.NEXT_PUBLIC_SHOP_WHATSAPP}
