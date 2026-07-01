@@ -24,8 +24,8 @@ export function Footer() {
           <ul className="space-y-2 text-muted-foreground">
             <li>Nairobi, Kenya</li>
             <li>
-              
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_SHOP_WHATSAPP}`}
+              <a
+                href={"https://wa.me/" + process.env.NEXT_PUBLIC_SHOP_WHATSAPP}
                 className="hover:text-primary transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -39,6 +39,6 @@ export function Footer() {
       <div className="border-t border-border text-center text-xs text-muted-foreground py-4">
         © {new Date().getFullYear()} Alkosphre Furniture. All rights reserved.
       </div>
-    </footer>
+    </footer >
   );
 }
