@@ -11,9 +11,9 @@ export const metadata = {
 export default async function ShopPage({
   searchParams,
 }: {
-  searchParams: { category?: string; q?: string; min?: string; max?: string };
+  searchParams: Promise<{ category?: string; q?: string; min?: string; max?: string }>;
 }) {
-  const { category, q, min, max } = searchParams;
+  const { category, q, min, max } = await searchParams;
 
   const [products, categories] = await Promise.all([
     prisma.product.findMany({
