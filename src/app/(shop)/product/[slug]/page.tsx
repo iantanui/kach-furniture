@@ -4,8 +4,14 @@ import { ProductGallery } from "@/components/product-gallery";
 import { ProductActions } from "@/components/product-actions";
 import { Ruler, Layers, Package, Tag } from "lucide-react";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const product = await prisma.product.findUnique({ where: { slug: params.slug } });
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const product = await prisma.product.findUnique({ where: { slug } });
+
   if (!product) return {};
   return {
     title: `${product.title} | Alkosphre Furniture`,
@@ -17,9 +23,14 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   };
 }
 
-export default async function ProductPage({ params }: { params: { slug: string } }) {
+export default async function ProductPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
   const product = await prisma.product.findUnique({
-    where: { slug: params.slug },
+    where: { slug },
     include: {
       images: { orderBy: { order: "asc" } },
       category: true,
@@ -29,7 +40,10 @@ export default async function ProductPage({ params }: { params: { slug: string }
   if (!product) notFound();
 
   const dims = product.dimensions as {
-    width: number; height: number; depth: number; unit: string;
+    width: number;
+    height: number;
+    depth: number;
+    unit: string;
   };
 
   return (
@@ -46,7 +60,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
             KES {Number(product.price).toLocaleString()}
           </p>
 
-          <p className="text-muted-foreground leading-relaxed mb-8">{product.description}</p>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            {product.description}
+          </p>
 
           <div className="space-y-4 mb-8 border-t border-border pt-6">
             <div className="flex items-start gap-3">
@@ -54,7 +70,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <div>
                 <p className="text-sm font-medium">Dimensions</p>
                 <p className="text-sm text-muted-foreground">
-                  {dims.width} × {dims.height} × {dims.depth} {dims.unit} (W × H × D)
+                  {dims.width} × {dims.height} × {dims.depth} {dims.unit} (W × H
+                  × D)
                 </p>
               </div>
             </div>
@@ -62,7 +79,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <Layers className="w-5 h-5 text-muted-foreground mt-0.5 shrink-0" />
               <div>
                 <p className="text-sm font-medium">Materials</p>
-                <p className="text-sm text-muted-foreground">{product.materials.join(", ")}</p>
+                <p className="text-sm text-muted-foreground">
+                  {product.materials.join(", ")}
+                </p>
               </div>
             </div>
             <div className="flex items-start gap-3">
@@ -78,7 +97,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
               <Tag className="w-5 h-5 text-muted-foreground mt-0.5 shrink-0" />
               <div>
                 <p className="text-sm font-medium">Category</p>
-                <p className="text-sm text-muted-foreground">{product.category.name}</p>
+                <p className="text-sm text-muted-foreground">
+                  {product.category.name}
+                </p>
               </div>
             </div>
           </div>
