@@ -41,3 +41,12 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+setup*.sh
+.env
+.env.local
+prisma/seed.ts
+setup*.sh
+setup*.sh
+.env
+.env.local
+prisma/seed.ts
