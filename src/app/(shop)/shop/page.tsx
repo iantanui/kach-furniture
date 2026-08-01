@@ -2,6 +2,12 @@ import { Suspense } from "react";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/product-card";
 import { ShopFilters } from "@/components/shop-filters";
+import { Product, ProductImage, Category } from "@prisma/client";
+
+type ProductWithRelations = Product & {
+  images: ProductImage[];
+  category: Category;
+};
 
 export const metadata = {
   title: "Shop | Alkosphre Furniture",
@@ -15,7 +21,7 @@ export default async function ShopPage({
 }) {
   const { category, q, min, max } = await searchParams;
 
-  const [products, categories] = await Promise.all([
+  const [products, categories]: [ProductWithRelations[], Category[]] = await Promise.all([
     prisma.product.findMany({
       where: {
         ...(category && { category: { slug: category } }),
