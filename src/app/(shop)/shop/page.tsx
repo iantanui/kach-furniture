@@ -2,11 +2,6 @@ import { Suspense } from "react";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/product-card";
 import { ShopFilters } from "@/components/shop-filters";
-import type { Prisma } from "@prisma/client";
-
-type ProductWithRelations = Prisma.ProductGetPayload<{
-  include: { images: true; category: true };
-}>;
 
 export const metadata = {
   title: "Shop | Alkosphre Furniture",
@@ -59,7 +54,7 @@ export default async function ShopPage({
             <>
               <p className="text-sm text-muted-foreground mb-6">{products.length} products</p>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                {products.map((p: ProductWithRelations) => (
+                {products.map((p) => (
                   <ProductCard
                     key={p.id}
                     slug={p.slug}
