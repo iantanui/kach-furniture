@@ -10,7 +10,7 @@ export const productSchema = z.object({
     length: z.number().positive(),
     width: z.number().positive(),
     height: z.number().positive(),
-    unit: z.enum(["cm", "in"]).default("cm"),
+    unit: z.enum(["cm", "in"]),
   }),
   stockStatus: z.enum(["IN_STOCK", "OUT_OF_STOCK", "MADE_TO_ORDER"]),
   featured: z.boolean().default(false),
