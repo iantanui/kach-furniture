@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
-import { LayoutDashboard, Package, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, Package, LogOut, Menu, X, ExternalLink } from "lucide-react";
 
 const navLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -80,6 +80,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 {link.label}
               </Link>
             ))}
+
+            <div className="pt-4 mt-4 border-t border-border">
+              <Link
+                href="/"
+                target="_blank"
+                className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-muted-foreground hover:bg-muted transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View Site
+              </Link>
+            </div>
           </nav>
           <div className="p-4 border-t border-border">
             <p className="text-xs text-muted-foreground mb-3 truncate">{session.user?.email}</p>
