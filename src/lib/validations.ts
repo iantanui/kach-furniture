@@ -13,7 +13,7 @@ export const productSchema = z.object({
     unit: z.enum(["cm", "in"]),
   }),
   stockStatus: z.enum(["IN_STOCK", "OUT_OF_STOCK", "MADE_TO_ORDER"]),
-  featured: z.boolean().default(false),
+  featured: z.boolean(),
   images: z.array(z.object({ url: z.string(), publicId: z.string() })).min(1, "Add at least one image"),
 });
 
