@@ -21,7 +21,7 @@ export default async function ShopPage({
 }) {
   const { category, q, min, max } = await searchParams;
 
-  const [products, categories]: [ProductWithRelations[], Category[]] = await Promise.all([
+  const [products, categories] = await Promise.all([
     prisma.product.findMany({
       where: {
         ...(category && { category: { slug: category } }),
@@ -60,7 +60,7 @@ export default async function ShopPage({
             <>
               <p className="text-sm text-muted-foreground mb-6">{products.length} products</p>
               <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-                {products.map((p) => (
+                {products.map((p: ProductWithRelations) => (
                   <ProductCard
                     key={p.id}
                     slug={p.slug}
