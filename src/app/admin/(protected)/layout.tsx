@@ -5,6 +5,7 @@ import { useSession } from "next-auth/react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
 import { LayoutDashboard, Package, LogOut, Menu, X, ExternalLink } from "lucide-react";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const navLinks = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
@@ -40,13 +41,17 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Top bar */}
       <header className="h-14 border-b border-border bg-background flex items-center justify-between px-4 sticky top-0 z-40">
         <span className="font-semibold text-sm">Alkosphere Admin</span>
-        <button
-          className="md:hidden p-2"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          aria-label="Toggle sidebar"
-        >
-          {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-        </button>
+        
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          <button
+            className="md:hidden p-2"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-label="Toggle sidebar"
+          >
+            {sidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </button>
+        </div>
       </header>
 
       <div className="flex flex-1 overflow-hidden">
