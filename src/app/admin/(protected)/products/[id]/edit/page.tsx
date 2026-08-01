@@ -17,7 +17,7 @@ export default async function EditProductPage({ params }: { params: Promise<{ id
   if (!product) notFound();
 
   const dims = product.dimensions as {
-    width: number; height: number; depth: number; unit: "cm" | "in";
+    length: number; width: number; height: number; unit: "cm" | "in";
   };
 
   return (
