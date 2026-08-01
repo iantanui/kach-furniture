@@ -2,12 +2,11 @@ import { Suspense } from "react";
 import { prisma } from "@/lib/prisma";
 import { ProductCard } from "@/components/product-card";
 import { ShopFilters } from "@/components/shop-filters";
-import { Product, ProductImage, Category } from "@prisma/client";
+import type { Prisma } from "@prisma/client";
 
-type ProductWithRelations = Product & {
-  images: ProductImage[];
-  category: Category;
-};
+type ProductWithRelations = Prisma.ProductGetPayload<{
+  include: { images: true; category: true };
+}>;
 
 export const metadata = {
   title: "Shop | Alkosphre Furniture",
